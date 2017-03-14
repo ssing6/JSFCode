@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"	
+	    xmlns:p="http://primefaces.org/ui"
+	    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	    
+	<h:head>
+	    <title>Weather Data Login</title>
+	    <link href="#{request.contextPath}/resources/icons/Weather.ico" rel="shortcut icon" type="image/png" />
+	    
+	    <h:outputStylesheet library="bootstrap" name="dist/css/bootstrap.min.css" target="head" required="true" requiredMessage="Mandatory"/>
+		<!-- <h:outputStylesheet library="css" name="signin.css" target="head" required="true" requiredMessage="Mandatory"/> -->
+		<style>
+			body {
+  			padding-top: 40px;
+			padding-bottom: 40px;
+  			background-color: lightgrey;
+				}
+		</style>
+	</h:head>
+	<h:body>
+		<div class="container">
+        	<div class="navbar navbar-inverse navbar-fixed-top" >
+        		<div class="navbar-brand">
+        			Historical Weather Data
+        		</div>
+        		<ul class="nav navbar-nav navbar-right">
+					<li><a> <p:outputLabel value="e-mail: " />sriharshasingudasu@gmail.com</a>  </li>
+	            </ul>
+        	</div>
+        	
+			<div style="position: absolute; left: 500px; top: 150px;">
+				<h:form>
+					<h2> Log in </h2>
+		    		<h:panelGrid id="userlogin" columns="3" cellpadding="5">
+						<p:outputLabel for="username" value="User Name:" />
+						<p:inputText id="username" size="25" value="#{login.user}" 
+							required="true" pt:placeholder="Email Address" 
+							p:requiredMessage = "Please enter User Name" 
+							validatorMessage="Invalid email format"
+							autocomplete="off">
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+						<!-- <p:message for="username" />  -->
+						
+						<p:outputLabel for="password" value="Password:" />
+						<p:password id="password" size="25" value="#{login.pwd}" required="true" pt:placeholder="Password" p:requiredMessage = "Please enter Password"/>
+						<!-- <p:message for="password"/> -->
+		    			
+		    			<p:commandButton id="submitButton" value="Login" action="#{login.validateUsernamePassword()}"  update="userlogin" ajax="false"/>
+		    		</h:panelGrid>
+				</h:form>
+				<h:form>
+					<p:outputLabel value = "New User ? " /> 
+					<h:commandLink value="Sign Up" action="newuser"/> 
+					<br/>
+					<p:outputLabel value = "Update Password ? " /> 
+					<h:commandLink value="Update Password" action="updateuser"/>
+					<br/>
+					<p:outputLabel style="color:green;" value = "  (* Email id is the actual User Name)" />
+					<!-- <p:commandButton id="signupButton" value="Sign Up" action="signup.xhtml"  ajax="false"/> -->
+					<p:messages />
+				</h:form>
+			</div>
+		</div>
+		<h:form>
+		<div class="navbar navbar-inverse navbar-fixed-bottom" > 
+			<!--
+			<ul class="nav navbar-nav navbar-right">
+				<h:commandLink value="Contact Us" action="contact" style="position: absolute; right:50px; bottom:10px" />
+	        </ul>
+	        -->
+		</div>
+		</h:form>
+	</h:body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"	
+	    xmlns:p="http://primefaces.org/ui"
+	    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>    
+    <title>Facelet Title</title>
+    <link href="#{request.contextPath}/resources/icons/Weather.ico" rel="shortcut icon" type="image/png" />
+    <h:outputStylesheet library="bootstrap" name="dist/css/bootstrap.min.css" target="head" required="true" requiredMessage="Mandatory"/>
+    <!-- <h:outputStylesheet library="css" name="signin.css" target="head" required="true" requiredMessage="Mandatory"/> -->
+		<style>
+			body {
+  			padding-top: 40px;
+			padding-bottom: 40px;
+  			background-color: lightgrey;
+				}
+		</style>
+</h:head>
+<h:body>
+    <div class="container">
+	    <div class="navbar navbar-inverse navbar-fixed-top" >
+        		<div class="navbar-brand">
+        			Historical Weather Data
+        		</div>
+        		<ul class="nav navbar-nav navbar-right">
+					<li><a> <p:outputLabel value="e-mail: " />sriharshasingudasu@gmail.com</a>  </li>
+	            </ul>
+       	</div>
+	   	<br/> <br/>
+	    <h:form>
+       		<p:outputLabel value = "Welcome  : "/>
+       		<p:outputLabel style="color:blue;" value = " #{login.user}" />
+       		<h:commandLink action="#{login.logout}" value="Logout" style="position: absolute; right: 115px;">
+       		</h:commandLink>
+   		</h:form>
+   		<br/> <br/>
+   		<div style="position: absolute; left: 55px; top: 140px;">
+				<h:form>
+					<h:panelGrid id="datePanel" columns="3" cellpadding="5">
+						<p:outputLabel for="startdate" value="Start Date : " />
+						<p:calendar id="startdate" value="#{login.startDate}" mode="popup" navigator="true" showOn="button" popupIconOnly="true" maxdate="today()" required="true" pt:placeholder="Start Date" p:requiredMessage = "Please Enter Start Date"/>
+						<!-- <p:message for="startdate" /> -->
+						
+						<p:outputLabel for="enddate" value="Start Date  : " />
+						<p:calendar id="enddate" value="#{login.endDate}" mode="popup" navigator="true" showOn="button" popupIconOnly="true" maxdate="today()" required="true" pt:placeholder="End Date" p:requiredMessage = "Please Enter End Date"/>
+						<!-- <p:message for="enddate" /> -->
+						
+						<p:outputLabel for="zipcode" value="Zip Code   : " />
+						<p:inputText id="zipcode"  value="#{login.zipcode}" required="true" pt:placeholder="Zip Code" p:requiredMessage = "Please Enter Zip Code" autocomplete="off" />
+						<!-- <p:message for="zipcode" /> -->
+						
+						<p:outputLabel for="cropval" value="Crop Value:" />
+						<p:selectOneMenu id="cropval" value="#{login.crop}" required="true" p:requiredMessage = "Select Crop Code">
+							<f:selectItem itemLabel="Select Crop" itemValue="" noSelectionOption="true" />
+   							<f:selectItems value="#{login.cropval}" />
+						</p:selectOneMenu>
+						<!-- <p:message for="cropval" /> -->
+
+					</h:panelGrid>
+					<p:outputLabel style="color:green;" value="(*Maximum of 10 dates in a minute)" /> <br/>
+					<p:commandButton id="submitButton" value="GetDetails"  
+							update="datePanel" ajax="false" 
+							style="left: 100px;"
+							action="#{login.dateauth()}" />
+				</h:form>
+				<p></p>
+				<p:messages styleClass="errorMessage" />
+		</div>
+    </div>
+    <div style="position: absolute; left: 500px; top: 120px;">
+    	<p:outputLabel value="Results : " /> <br/>
+    	<!-- <p:outputLabel value = "#{login.output}"/> -->
+		<!-- <h:outputText value = "#{login.output}" escape="false" /> -->
+		<ui:repeat value="#{login.list}" var="item"> <p:outputLabel style="color:grey;" value = "#{item}"/> <br/> </ui:repeat>
+		<!-- <h:dataTable value="#{login.list}" var="item"> <h:column>#{item}</h:column> </h:dataTable> -->
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom" > </div>
+</h:body>
+</html>

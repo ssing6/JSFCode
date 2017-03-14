@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"	
+	    xmlns:p="http://primefaces.org/ui"
+	    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	    
+	<h:head>
+	    <title>Weather Data Update User</title>
+	    <link href="#{request.contextPath}/resources/icons/Weather.ico" rel="shortcut icon" type="image/png" />
+	    
+	    <h:outputStylesheet library="bootstrap" name="dist/css/bootstrap.min.css" target="head" required="true" requiredMessage="Mandatory"/>
+        <!-- <h:outputStylesheet library="css" name="signin.css" target="head" required="true" requiredMessage="Mandatory"/> -->
+		<style>
+			body {
+  			padding-top: 40px;
+			padding-bottom: 40px;
+  			background-color: lightgrey;
+				}
+		</style>
+    
+	</h:head>
+	<h:body>
+		<div class="navbar navbar-inverse navbar-fixed-top" >
+        		<div class="navbar-brand">
+        			Historical Weather Data
+        		</div>
+        		<ul class="nav navbar-nav navbar-right">
+					<li><a> <p:outputLabel value="e-mail: " />sriharshasingudasu@gmail.com</a>  </li>
+	            </ul>
+	            
+			<div style="position: absolute; left: 475px; top: 125px;">
+				<h:form>
+					<h:panelGrid id="updatePanel" columns="2" cellpadding="5">
+						<p:outputLabel value = "Email Id : " />
+						<p:outputLabel value = "#{updateuser.email}" />
+						
+						<p:outputLabel value = "User Name : " />
+						<p:outputLabel value = "#{updateuser.name}" />
+						
+						<p:outputLabel value = "Old Password : " />
+						<p:password id="oldpassword"  value="#{updateuser.pwd}" 
+							required="true" 
+							pt:placeholder="Old Password" 
+							p:requiredMessage = "Please Enter Old Password" 
+							autocomplete="off" >
+						</p:password>
+						
+						<p:outputLabel value = "New Password : " />
+						<p:password id="newpassword"  value="#{updateuser.npwd}" 
+							required="true" 
+							pt:placeholder="New Password"
+							validatorMessage="Password did not meet requirements" 
+							p:requiredMessage = "Please Enter New Password" 
+							autocomplete="off" >
+							<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,15})" />
+						</p:password>
+						
+						<p:outputLabel value = "Confirm Password : " />
+						<p:password id="confirmpassword"  value="#{updateuser.nrpwd}" 
+							required="true" 
+							pt:placeholder="Confirm Password"
+							p:requiredMessage = "Please Enter Confirm Password" 
+							autocomplete="off" >
+						</p:password>
+					</h:panelGrid>
+					<p:commandButton id="updateButton" value="Update Details" action="#{updateuser.update()}" ajax="false"/>
+				</h:form>
+				<h:form>
+					<p:outputLabel value = "Know your details ?" />  
+					<h:commandLink value="Log in" action="#{updateuser.login}" /> <br/>
+					<p:outputLabel style="color:green;" value="Password(8-15) with atleast 1 digit, 1 upper case, 1 lower case, 1 special symbol (“@#$%”)" /> <br/>
+					<p:messages/>
+				</h:form>
+			</div>
+		</div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom" > </div>
+	</h:body>
+</html>

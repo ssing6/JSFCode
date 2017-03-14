@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14571920913950" configfile="/JSFcode/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="421" y="41" id="pf14571921263051" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf14571950768274 pf14573831140002 pf14586613539540" inlinks="pf14573987821784 pf14574013624616 pf14586620573583 pf14587530380945" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin.xhtml" x="744" y="96" id="pf14571921263053" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14571976109075" inlinks="pf14571950768274" path="/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loggedout.xhtml" x="573" y="300" id="pf14571976109076" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14573987821784" inlinks="pf14571976109075" path="/loggedout.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="newuser.xhtml" x="84" y="60" id="pf14573831140003" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf14574013624616" inlinks="pf14573831140002 pf14587494202894" path="/newuser.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="updateuser.xhtml" x="405" y="288" id="pf14586613539551" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf14586620573583 pf14587488155142 pf14587494202894" inlinks="pf14586613539540" path="/updateuser.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="updatepage.xhtml" x="75" y="235" id="pf14587488155143" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf14587530380945" inlinks="pf14587488155142" path="/updatepage.xhtml"/>
+  <links id="pf14571950768274" target="pf14571921263053" source="pf14571921263051" outcome="admin" redirect="true"/>
+  <links id="pf14571976109075" target="pf14571976109076" source="pf14571921263053" outcome="login" redirect="true"/>
+  <links id="pf14573831140002" target="pf14573831140003" source="pf14571921263051" outcome="newuser" redirect="true"/>
+  <links id="pf14573987821784" target="pf14571921263051" source="pf14571976109076" redirect="true"/>
+  <links id="pf14574013624616" target="pf14571921263051" source="pf14573831140003" outcome="login" redirect="true"/>
+  <links id="pf14586613539540" target="pf14586613539551" source="pf14571921263051" outcome="updateuser" redirect="true"/>
+  <links id="pf14586620573583" target="pf14571921263051" source="pf14586613539551" outcome="login" redirect="true"/>
+  <links id="pf14587488155142" target="pf14587488155143" source="pf14586613539551" outcome="updatedata"/>
+  <links id="pf14587494202894" target="pf14573831140003" source="pf14586613539551" outcome="newuser" redirect="true"/>
+  <links id="pf14587530380945" target="pf14571921263051" source="pf14587488155143" outcome="login" redirect="true"/>
+</pageflow:Pageflow>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+	    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	    xmlns:f="http://java.sun.com/jsf/core"
+	    xmlns:ui="http://java.sun.com/jsf/facelets"	
+	    xmlns:p="http://primefaces.org/ui"
+	    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	    
+	<h:head>
+	    <title>Weather Data Update User Email</title>
+	    <link href="#{request.contextPath}/resources/icons/Weather.ico" rel="shortcut icon" type="image/png" />
+	    
+	    <h:outputStylesheet library="bootstrap" name="dist/css/bootstrap.min.css" target="head" required="true" requiredMessage="Mandatory"/>
+        <!-- <h:outputStylesheet library="css" name="signin.css" target="head" required="true" requiredMessage="Mandatory"/> -->
+		<style>
+			body {
+  			padding-top: 40px;
+			padding-bottom: 40px;
+  			background-color: lightgrey;
+				}
+		</style>
+    
+	</h:head>
+	<h:body>
+		<div class="navbar navbar-inverse navbar-fixed-top" >
+        		<div class="navbar-brand">
+        			Historical Weather Data
+        		</div>
+        		<ul class="nav navbar-nav navbar-right">
+					<li><a> <p:outputLabel value="e-mail: " />sriharshasingudasu@gmail.com</a>  </li>
+	            </ul>
+	            
+			<div style="position: absolute; left: 475px; top: 125px;">
+				<h:form>
+					<h2> Provide the Information </h2>
+		    			<p:outputLabel for="email" value="Email:"/>
+						<p:inputText id="email" required="true" label="email" size="25"
+							pt:placeholder="Email"
+							autocomplete="off"
+							p:requiredMessage="Please enter your email"
+							validatorMessage="Invalid email format"
+							value="#{updateuser.email}">
+		  					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+						<br/>
+						<p:commandButton id="submitButton" action="#{updateuser.check()}" value="Proceed" ajax="false"/>
+				</h:form>
+				<h:form>
+					<p:outputLabel value = "Know your details ?" />  
+					<h:commandLink value="Log in" action="#{updateuser.login}"/> <br/>
+					<p:outputLabel value = "New User ?" />  
+					<h:commandLink value="New User" action="#{updateuser.newuser}" />
+					<p:messages/>
+				</h:form>
+	
+			</div>
+		</div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom" > </div>
+	</h:body>
+</html>
